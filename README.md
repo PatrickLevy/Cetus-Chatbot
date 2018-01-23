@@ -1,4 +1,5 @@
 # Cetus-Chatbot
+Authors: Erick Brownfield, Johnny Sanchez, Patrick Levy
 
 ## Welcome to Cetus the Chatbot
 - Cetus will eventually be deployed to a cloud server
