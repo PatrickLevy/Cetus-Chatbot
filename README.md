@@ -21,7 +21,7 @@ Note: Right now Cetus doesn't say too much, but come back later and maybe he'll 
 #### If you would like to fork the repo and have your own copy of it (more complicated)
 1. Click the "Fork" button in the upper right hand corner. Select your own GitHub profile as the destination.
 2. Go to your own GitHub profile and find the forked repo. Find the green button that says "Clone or Download".
-3. Copy the URL after you click the green button
+3. Copy the URL after you click the green button (you will use it in the next step)
 4. Go to a terminal and type ```git clone https://github.com/YourProfileName/Cetus-Chatbot.git```
 5. Add the original repo as an upstream remote ```git remote add upstream https://github.com/PatrickLevy/Cetus-Chatbot.git```
 6. To push code you can either push it to your own fork: ```git push origin mySuperCoolBranch``` or you can push it into the upstream repo directly ```git push upstream mySuperCoolBranch```
