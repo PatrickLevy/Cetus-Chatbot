@@ -8,4 +8,4 @@
 ## How to Run 
 #### To Run Everything Locally Without the API Service (for development purposes)
 1. Clone repo
-2. Run the local version of Cetus the Chatbot ```./Cetus_Local.py```
+2. Run the local version of Cetus the Chatbot ```$ ./Cetus_Local.py```
