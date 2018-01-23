@@ -1,13 +1,11 @@
 # Cetus-Chatbot
 
-### To Run Everything Locally (for development purposes)
+## Welcome to Cetus the Chatbot
+- Cetus will eventually be deployed to a cloud server
+- You will eventually be able to talk to Cetus by typing in text to either a web or console application
+- Cetus will respond to your text using an amazing AI module
+
+## How to Run 
+#### To Run Everything Locally Without the API Service (for development purposes)
 1. Clone repo
 2. Run the local version of Cetus the Chatbot ```./Cetus_Local.py```
-
-### To Run the Console Application to Communicate with Cetus in the Cloud (Not working yet...)
-1. Clone repo
-2. Run the remote version of Cetus the Chatbot Client ```./Cetus_Remote.py```
-
-### To Run the Web Server Locally (TODO - coming later...)
-1. Clone repo
-2. ...
