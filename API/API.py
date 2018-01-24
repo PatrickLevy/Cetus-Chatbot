@@ -1,28 +1,39 @@
 #!/usr/bin/env python3
 from flask import Flask
+from flask import request
 from Main.Main import Main
 app = Flask(__name__)
 
-#####################################################
+###########################################################################
 # Cetus API
 # This will be our API for handling http requests
 # from our web application and/or console application
-#####################################################
+#
+# To run the this api server:
+#   1.  pip install Flask
+#   2.  FLASK_APP=./API/API.py flask run  (from the root of the project)
+#       
+#       - app should be running on port 5000  (localhost:5000/cetus)
+#
+# References: http://flask.pocoo.org/
+#
+###########################################################################
 
-# 1. Listen for incoming GET requests
-
-# 2. Call MainRunner function to get response
-
-# 3. Return response via http 
-
-
-# Leaving this around for now as a way to verify the api is running
+# Route to verify that the api is running
 @app.route("/")
 def hello():
-    return "Hello World!!!!"
+    return "I'm alive!!!!"
 
 # Route for chatting with the bot
+# pass data as "form data" - e.g. <domain>/cetus?userText=Hello!
 @app.route("/cetus")
-def sayhi():
-    response = Main('Hi cetus')
+def talkToCetus():
+    userText = request.args.get('userText')
+
+    # Call Main function to get Cetus' response
+    response = Main(userText)
+    print('userText', userText)
+    print('response', response)
+
+    # Return response via http 
     return response
