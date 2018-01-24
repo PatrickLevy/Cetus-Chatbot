@@ -1,15 +1,28 @@
 #!/usr/bin/env python3
 from Main.Main import Main
+import requests
+from config import api_server
 
+###########################################################################
+# Cetus Console Application
+# This is how you can talk to Cetus remotely using a terminal
+#
+# To run the this console application:
+#   1.  pip install requests
+#   2.  make sure that you are configured to point to the correct api server location (config.py)
+#   3.  ./Cetus_Remote.py
+#       
+# References: http://docs.python-requests.org/en/master/user/quickstart/
+#
+###########################################################################
 while True:
     # Get input string from user
+    # TODO Input validation
     input_string = input("Say something: ")
 
-    # TODO - This doesn't work at all yet!
     # Send input_string to Cetus API via HTTP
-    # response = MainRunner(input_string)
+    payload = {'userText': input_string}
+    req = requests.get(api_server, params = payload)
 
-    response = "Sorry our API doesn't work yet so I couldn't talk to Cetus."
-
-    # Print Response
-    print(response)
+    # Print Response from Cetus
+    print(req.text)
