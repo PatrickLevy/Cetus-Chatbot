@@ -15,6 +15,8 @@ app = Flask(__name__)
 #       
 #       - app should be running on port 5000  (localhost:5000/cetus)
 #
+#       - FLASK_APP=./API/API.py flask run --host=138.68.45.183 --port=80
+#
 # References: http://flask.pocoo.org/
 #
 ###########################################################################
