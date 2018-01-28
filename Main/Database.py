@@ -35,7 +35,6 @@ with inputFile:
     # Loop through each line (which contains one super long json object record)
     for line in lines:
         jsonDoc = json.loads(line)
-        parent_id = jsonDoc["parent_id"]
 
         # If the body has text, insert the row of data
         if (jsonDoc["body"] != "[deleted]"):
