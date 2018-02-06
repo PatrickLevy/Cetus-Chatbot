@@ -5,12 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cetus Chatbot</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
 </head>
 <body>
-    <input type="text" id="chatInput">
-    <button type="submit" id="submitButton">Submit</button>
+    <div class="container">
+        <header>
+            <h1>Cetus Chatbot</h1>
+            <nav>
+                <a href="index.html">Chat</a>
+                <a href="about.html">About</a>
+            </nav>
+        </header>
+       
+        <div class="chatbox"></div>
+        <div class="chatSubmit">
+            <input type="text" id="chatInput">
+            <button type="submit" id="submitVoice"></button>
+            <button type="submit" id="submitButton">Submit</button>
+        </div>
+    </div>
+    <footer>
 
+    </footer>
     <script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
