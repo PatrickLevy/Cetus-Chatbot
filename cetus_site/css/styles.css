@@ -1,6 +1,6 @@
 /* styling */
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;;
     margin: 0 auto;
 }
 
@@ -20,6 +20,18 @@ header {
 }
 h1 {
     padding-right: 50px;
+}
+
+#authors {
+    margin-left: 35px;
+}
+
+p {
+    padding: 5px;
+}
+
+#aboutText > p {
+    padding: 5px;
 }
 
 nav a, nav a:visited {
@@ -44,9 +56,33 @@ nav a:hover {
 }
 
 .chatbox {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 10px
+    padding: 15px;
+    width: 80%;
+    height: 450px;
+    margin-top: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    /* flex-flow: row wrap; */
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid lightgray;
+}
+
+.message {
+    border-radius: 5px;
+    max-width: auto;
+    color: white;
+    width: 80%;
+    padding: 15px;
+    margin: 5px 5px 0;
+}
+
+.bot {
+    background-color: darkgray;
+}
+.user {
+    background-color: #00352F;
 }
 
 /* Positioning */
@@ -63,22 +99,42 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 
 footer {
     grid-area: footer;
 }
 
+#aboutText {
+    grid-area: aboutText;
+}
+
+#authors {
+    grid-area: authors;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 150px 150px 35px 1fr;
+    grid-template-rows: 1fr 400px 200px 50px 1fr;
     grid-template-areas: 
         "header header header header"
         ". main main ."
         ". main main ."
         ". submit submit ."
         "footer footer footer footer";
+    justify-items: center;
+}
+
+.aboutContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "header header header"
+        ". aboutText authors"
+        "footer footer footer";
 }
 
 
