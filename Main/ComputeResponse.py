@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from myPremadeEstimator import main
+import myPremadeEstimator
 ###########################################
 # Compute Response Function(s)
 # @input: parsed input string
@@ -9,22 +9,27 @@ from myPremadeEstimator import main
 def ComputeResponse(categoryData):
     # Default return string
     returnString = "Sorry, I'm still learning how to talk. Say something else."
-    
-    # Use categories to determine response
-    if categoryData["greetingWord"] == 1:
-        returnString = "Hey, what's up?"
-    elif categoryData["goodbyeWord"] == 1:
-        returnString = "Talk to you later"
-    elif categoryData["questionWord"] == 1:
-        returnString = "Hmmm, good question. I don't know the answer."
-    elif categoryData["questionMark"] == 1:
-        returnString = "Hmmm, good question. I don't know the answer."
-    elif categoryData["period"] == 1:
-        returnString = "Hmmm... that's interesiting."
-    elif categoryData["exclamationPoint"] == 1:
-        returnString = "Wow! Tell me more!"
 
     # TODO - Use ML to generate a response based on teh input string
-    #main()
+    statementType = myPremadeEstimator.makePredictionUsingSavedModel(categoryData)
+    print('-------result---------')
+    print(statementType)
+    print('----------------------')
+
+    if (statementType == 'greeting'):
+        returnString = "Hey, what's up?"
+    elif (statementType == 'goodbye'):
+        returnString == "Talk to you later"
+    elif (statementType == 'question'):
+        returnString = "Hmmm, good question. I am not sure about that."
+    elif (statementType == 'statement'):
+        returnString = "Wow, that's really cool."
+    elif (statementType == 'excitedStatement'):
+        returnString = "Holy crap! That's really awesome!"
+    elif (statementType == 'excitedGoodbye'):
+        returnString = "See ya!"
+    elif (statementType == 'excitedQuestion'):
+        returnString = "Yikes man, settle down."
+    
 
     return returnString
