@@ -8,8 +8,10 @@ def load_data(y_name='statementType'):
     """Returns the dataset as (train_x, train_y), (test_x, test_y)."""
     
     # Paths to data for training and testing
-    train_path = "/Users/levy/Projects/Cetus-Chatbot/classifyInputTypeData.csv"
-    test_path = "/Users/levy/Projects/Cetus-Chatbot/classifyInputTypeData.csv"
+    # train_path = "/Users/levy/Projects/Cetus-Chatbot/classifyInputTypeData.csv"
+    # test_path = "/Users/levy/Projects/Cetus-Chatbot/classifyInputTypeData.csv"
+    train_path = "/root/Cetus-Chatbot/classifyInputTypeData.csv"
+    test_path = "/root/Cetus-Chatbot/classifyInputTypeData.csv"
 
     train = pd.read_csv(train_path, names=CSV_COLUMN_NAMES, header=0)
     
