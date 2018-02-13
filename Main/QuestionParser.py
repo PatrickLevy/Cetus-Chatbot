@@ -5,36 +5,49 @@
 # @input: Raw user input string
 # @output: parsed string that can be fed into our AI module
 ###########################################
-def categorizeInput(inputString):
+def parseInput(inputString):
     # Categories
-    greeting = 0
-    goodbye = 0
-    question = 0
-    statement = 0
+    greetingWord = 0
+    goodbyeWord = 0
+    questionWord = 0
+    questionMark = 0
+    period = 0
+    exclamationPoint = 0
 
     # Definitions
     greetingWords = ["hi", "hello", "what's up"]
     goodbyeWords = ["bye", "later", "good night"]
-    questionWords = ["who", "what", "where", "when", "how", "why"]
+    questionWords = ["who", "what", "where", "when", "why", "how"]
 
-    # Check for greetings or goodbyes
+    # Check for greetings
     if any(word in inputString for word in greetingWords):
-        greeting = 1
+        greetingWord = 1
+    
+    # Check for goodbyes
     elif any(word in inputString for word in goodbyeWords):
-        goodbye = 1
+        goodbyeWord = 1
     
     # Check for question words
     if any(word in inputString for word in questionWords):
-        question = 1
+        questionWord = 1
     
     # Check for last character punctuation
     lastChar = inputString[-1:]
     if lastChar == "?":
-        question = 1
-    if lastChar in [".", "!"]:
-        statement = 1
+        questionMark = 1
+    if lastChar in ["."]:
+        period = 1
+    if lastChar in ["!"]:
+        exclamationPoint = 1
 
-    return {"greeting": greeting, "goodbye": goodbye, "question": question, "statement": statement}
+    return {
+        "greetingWord": greetingWord,
+        "goodbyeWord": goodbyeWord,
+        "questionWord": questionWord,
+        "questionMark": questionMark,
+        "period": period,
+        "exclamationPoint": exclamationPoint,
+    }
 
 ###########################################
 # Question Parser Function(s)
@@ -43,8 +56,6 @@ def categorizeInput(inputString):
 ###########################################
 def QuestionParser(inputString):
     # categorize input string
-    categorized = categorizeInput(inputString)
+    parsed = parseInput(inputString)
 
-    # TODO - Do more stuff! This is pretty lame!
-    
-    return categorized
+    return parsed
