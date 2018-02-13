@@ -1,7 +1,7 @@
 import pandas as pd
 import tensorflow as tf
 
-CSV_COLUMN_NAMES = ['greetingWord', 'goodbyeWord', 'questionWord', 'questionMark', 'period', 'exclamationPoint', 's']
+CSV_COLUMN_NAMES = ['greetingWord', 'goodbyeWord', 'questionWord', 'questionMark', 'period', 'exclamationPoint', 'statementType']
 STATEMENTTYPE = ['greeting', 'goodbye', 'question', 'statement', 'excitedStatement', 'excitedGoodbye', 'excitedQuestion']
 
 def load_data(y_name='statementType'):
