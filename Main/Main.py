@@ -12,11 +12,10 @@ from .QuestionParser import QuestionParser
 def Main(chat_input_string):
 
     # Parse and Tokenize Input String
-    categoryData = QuestionParser(chat_input_string)
-
+    parsedData = QuestionParser(chat_input_string)
 
     # Generate Response
-    response = ComputeResponse(categoryData)
+    response = ComputeResponse(parsedData)
 
     # Return to wherever this chat request came from (API or Cetus_Local)
     return response
