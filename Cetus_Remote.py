@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from Main.Main import Main
+# from Main.Main import Main
 import requests
 from config import api_server
 

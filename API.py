@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 from flask import Flask
 from flask import request
-from Main.Main import Main
+from Main import getResponseMain
+
 app = Flask(__name__)
 
 ###########################################################################
@@ -32,8 +33,8 @@ def hello():
 def talkToCetus():
     userText = request.args.get('userText')
 
-    # Call Main function to get Cetus' response
-    response = Main(userText)
+    # Call get Cetus' response
+    response = getResponseMain(userText)
     print('userText', userText)
     print('response', response)
 

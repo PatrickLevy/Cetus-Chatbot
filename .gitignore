@@ -12,6 +12,6 @@ data
 .DS_Store
 
 # Igonore the nmt-chatbot project
-nmt-chatbot/
+nmt_chatbot/
 models/
 models-old/
