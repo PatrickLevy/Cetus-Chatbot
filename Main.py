@@ -26,9 +26,9 @@ def getResponseMain(chat_input_string):
     nmt_response = inference(chat_input_string)
     best_index = nmt_response['best_index']
     best_response = nmt_response['answers'][best_index]
-    print(nmt_response)
-    print('---------best------')
-    print(best_response)
+    # print(nmt_response)
+    # print('---------best------')
+    # print(best_response)
     return best_response
 
 
