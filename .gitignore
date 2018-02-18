@@ -10,3 +10,6 @@ data
 
 # Mac Stuff
 .DS_Store
+
+# Igonore the nmt-chatbot project
+nmt-chatbot/
