@@ -13,3 +13,5 @@ data
 
 # Igonore the nmt-chatbot project
 nmt-chatbot/
+models/
+models-old/
