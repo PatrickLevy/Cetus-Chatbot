@@ -16204,7 +16204,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
         }
-        string_val: "_temp_21f7e814391a4f409a7f0de1c05a8faa/part"
+        string_val: "_temp_b70b5897a4724017abf239d2e5a99719/part"
       }
     }
   }
