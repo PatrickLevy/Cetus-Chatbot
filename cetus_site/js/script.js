@@ -36,6 +36,12 @@ $submitButton.hover(function() {
     } 
 });
 
+function appendMessage(message, identity) {
+    let htmlString = identity === 'user' ? '<p class="message user">': '<p class="message bot">' ;
+    htmlString += message + '</p>';
+    chatBox.append(htmlString);
+}
+
 // Submit event
 $submitButton.on('click', function(event) {
     // Don't reload the page on submit
@@ -48,10 +54,15 @@ $submitButton.on('click', function(event) {
     utterance.rate = '1';
     synth.speak(utterance);
 
-    // Add the text to the chat box
-    let htmlString = '<p class="message user">';
-    htmlString += $input.val() + '</p>';
-    chatBox.append(htmlString);
+    // Put user message onto chat window
+    appendMessage($input.val(), 'user');
+
+    // Send value to api and then put bot's message onto chat window
+    $.get( "http://138.68.45.183:3001/cetus", { userText: $input.val() } )
+      .done(function( data ) {
+        appendMessage(data, 'bot');
+      });
+
 });
 
 // Voice input event
