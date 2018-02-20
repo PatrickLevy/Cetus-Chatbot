@@ -42,17 +42,22 @@ function appendMessage(message, identity) {
     chatBox.append(htmlString);
 }
 
+function talk(text) {
+    // Make utterance
+    let utterance = new SpeechSynthesisUtterance(text);
+    utterance.voice = voice;
+    utterance.pitch = '1';
+    utterance.rate = '1';
+    synth.speak(utterance);
+}
+
 // Submit event
 $submitButton.on('click', function(event) {
     // Don't reload the page on submit
     event.preventDefault();
 
-    // Make utterance
-    let utterance = new SpeechSynthesisUtterance($input.val());
-    utterance.voice = voice;
-    utterance.pitch = '1';
-    utterance.rate = '1';
-    synth.speak(utterance);
+    // Vocalize user input
+    talk($input.val());
 
     // Put user message onto chat window
     appendMessage($input.val(), 'user');
@@ -61,6 +66,7 @@ $submitButton.on('click', function(event) {
     $.get( "http://138.68.45.183:3001/cetus", { userText: $input.val() } )
       .done(function( data ) {
         appendMessage(data, 'bot');
+        talk(data);
       });
 
 });
