@@ -24,7 +24,7 @@ CORS(app)
 ###########################################################################
 
 # Route to verify that the api is running
-@app.route("/")
+@app.route("/amialive")
 def hello():
     return "I'm alive!!!!"
 
