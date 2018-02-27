@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   handleSubmit (e) {
-    axios.get('http://138.68.45.183/cetus', {
+    axios.get('http://138.68.45.183:3001/cetus', {
       params: {
         userText: this.state.userInput
       }
