@@ -78,11 +78,18 @@ nav a:hover {
     margin: 5px 5px 0;
 }
 
+.dialogue {
+    width: 100%;
+}
 .bot {
     background-color: darkgray;
 }
 .user {
     background-color: #00352F;
+}
+
+.icon {
+    margin-right: 10px;
 }
 
 /* Positioning */
