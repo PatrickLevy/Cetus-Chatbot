@@ -63,7 +63,7 @@ $submitButton.on('click', function(event) {
     appendMessage($input.val(), 'user');
 
     // Send value to api and then put bot's message onto chat window
-    $.get( "http://138.68.45.183:3001/cetus", { userText: $input.val() } )
+    $.get( "http://184.105.3.121:3001/cetus", { userText: $input.val() } )
       .done(function( data ) {
         appendMessage(data, 'bot');
         talk(data);

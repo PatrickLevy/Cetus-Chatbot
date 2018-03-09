@@ -2,78 +2,78 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
-function ChatMessage(props) {
-  if(props.currentState.responses.length > 0) {
-    return (
-      <div>
-        <p className="message bot">{props.currentState.userInput}</p>
-        <p className="message user">{props.currentState.responses.slice(-1)[0].botResponse}</p>
-      </div>
-    );
-  }
-}
+const synth = window.speechSynthesis;
 
-let id = 0;
+function ChatMessage(props) {
+  return (
+    <div className="dialogue">
+      
+      <p className="message user">
+        <i className="icon fa fa-2x fa-user"/>
+        {props.message.userMessage}
+      </p>
+      
+      <p className="message bot">
+        <i className="icon fa fa-2x fa-android"/>
+        {props.message.botResponse}
+      </p>
+
+    </div>
+  );
+}
 
 class App extends Component {
   constructor () {
     super();
     this.state = {
-      userInput: null,
+      userInput: '',
       responses: [],
     }
   }
 
+  talk(text) {
+    let utterance = new SpeechSynthesisUtterance(text);
+    utterance.pitch = '1';
+    utterance.rate = '1';
+    synth.speak(utterance);
+  }
+
   handleUserInput (e) {
-    // console.log("Hello!", e.currentTarget.value);
     this.setState ({
       userInput: e.currentTarget.value
     });
   }
 
   handleSubmit (e) {
+    // Send the user text to our api to get a response
     axios.get('http://184.105.3.121:3001/cetus', {
       params: {
         userText: this.state.userInput
       }
     })
     .then( (response) => {
-      // console.log(response);
-      // this.setState ({
-      //   responses: this.state.responses.push({
-      //     userMessage: this.state.userInput,
-      //     botResponse: response.data,
-      //   }),
-      // });
+      // Speak the response
+      this.talk(response.data);
 
+      // Add the response to state to keep track of our conversation
+      // ...and clear the current userInput value
       let responses = this.state.responses;
-      // console.log('Responses before:', responses);
       responses.push({
         userMessage: this.state.userInput,
         botResponse: response.data,
-        key: id
       });
-      // console.log('Responses after:', responses);
       this.setState ({
-
-          responses: responses
-          // responses: state.responses.push({
-          //   userMessage: state.userInput,
-          //   botResponse: response.data
-          // })
-
+        responses: responses,
+        userInput: '',
       });
-      id += 1;
     })
     .catch(function (error) {
-      console.log(error);
+      console.error(error);
       alert("Message could not be sent, please try again.");
     });
-    // console.log(this.state.userInput);
   }
 
   render() {
-    // console.log("this.state", this.state);
     return (
       <div className="container">
           <header>
@@ -85,18 +85,30 @@ class App extends Component {
           </header>
 
           <div className="chatbox">
-
-              <p className="message bot">Hey, lets talk!</p>
-              <p className="message user">Hello!</p>
-              {this.state.responses.map(function(message, index){
+              <p className="message bot">
+                <i className="icon fa fa-2x fa-android"/>
+                Hey, lets talk!
+              </p>
+              
+              {
+                this.state.responses.map((message, index) => {
                   return (
-                      <ChatMessage currentState={this.state} key={id} />
+                      <ChatMessage message={message} key={index} />
                   );
-              }.bind(this))}
+                })
+              }
+              {
+                this.state.userInput ?
+                  <p className="message user">
+                    <i className="icon fa fa-2x fa-user"/>
+                    {this.state.userInput}
+                  </p> :
+                  null
+              }
 
           </div>
           <div className="chatSubmit">
-              <input type="text" id="chatInput" onChange={(e) => this.handleUserInput(e)} />
+              <input type="text" id="chatInput" value={this.state.userInput} onChange={(e) => this.handleUserInput(e)} />
               <button type="submit" id="submitButton" onClick={(e) => this.handleSubmit(e)}>Submit</button>
           </div>
           <footer>
