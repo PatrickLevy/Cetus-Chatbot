@@ -31,9 +31,6 @@ class App extends Component {
       responses: [],
     }
   }
-  componentDidMount() {
-    this.startListening();
-  }
 
   startListening() {
     console.log('listening!');
