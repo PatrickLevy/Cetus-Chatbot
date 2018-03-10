@@ -2,6 +2,7 @@
   "name": "site_v2",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://web.engr.oregonstate.edu/~levyp/",
   "dependencies": {
     "axios": "^0.17.1",
     "font-awesome": "^4.7.0",

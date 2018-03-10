@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 
 const synth = window.speechSynthesis;
+const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 
 function ChatMessage(props) {
   return (
@@ -30,6 +31,22 @@ class App extends Component {
       responses: [],
     }
   }
+  componentDidMount() {
+    this.startListening();
+  }
+
+  startListening() {
+    console.log('listening!');
+    const recognition = new SpeechRecognition();
+    recognition.start();
+    recognition.onresult = (event) => {
+      console.log('event', event);
+      const phrase = event.results[0][0].transcript;
+      this.setState({ userInput: phrase });
+      this.handleSubmit();
+      
+    }  
+  }
 
   talk(text) {
     let utterance = new SpeechSynthesisUtterance(text);
@@ -42,6 +59,10 @@ class App extends Component {
     this.setState ({
       userInput: e.currentTarget.value
     });
+  }
+
+  handleRecord() {
+    this.startListening()
   }
 
   handleSubmit (e) {
@@ -109,6 +130,7 @@ class App extends Component {
           </div>
           <div className="chatSubmit">
               <input type="text" id="chatInput" value={this.state.userInput} onChange={(e) => this.handleUserInput(e)} />
+              <button id="recordButton" onClick={(e) => this.handleRecord(e)}>Record</button>
               <button type="submit" id="submitButton" onClick={(e) => this.handleSubmit(e)}>Submit</button>
           </div>
           <footer>
