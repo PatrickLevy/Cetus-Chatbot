@@ -46,7 +46,7 @@ class App extends Component {
 
   handleSubmit (e) {
     // Send the user text to our api to get a response
-    axios.get('http://184.105.3.121:3001/cetus', {
+    axios.get('https://184.105.3.121:3001/cetus', {
       params: {
         userText: this.state.userInput
       }

@@ -44,4 +44,4 @@ def talkToCetus():
     return response
 
 
-app.run(ssl_context='adhoc')
+app.run(host='10.64.56.3', port='3001', ssl_context='adhoc')
