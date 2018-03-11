@@ -29,7 +29,20 @@ class App extends Component {
     this.state = {
       userInput: '',
       responses: [],
+      loading: false,
     }
+  }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+  
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+  
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   startListening() {
@@ -52,10 +65,20 @@ class App extends Component {
     synth.speak(utterance);
   }
 
+  handleKeyPress(e) {
+    // handleUserInput is already handling changes to the
+    // textbox, just watch here for Enter
+    if (e.key === 'Enter') {
+      this.handleSubmit(e);
+    }
+  }
+
   handleUserInput (e) {
+    // User typed a letter into the textbox
     this.setState ({
       userInput: e.currentTarget.value
     });
+    // this.scrollToBottom();
   }
 
   handleRecord() {
@@ -63,6 +86,12 @@ class App extends Component {
   }
 
   handleSubmit (e) {
+    // Keep the form from submitting and causing a hard refresh
+    console.log('e', e);
+    e.preventDefault()
+    // Set loading to true so that we can provide user feedback
+    this.setState ({ loading: true });
+
     // Send the user text to our api to get a response
     axios.get('http://184.105.3.121:3001/cetus', {
       params: {
@@ -70,6 +99,9 @@ class App extends Component {
       }
     })
     .then( (response) => {
+      // Set the loading flag to false
+      this.setState( { loading: false });
+
       // Speak the response
       this.talk(response.data);
 
@@ -108,6 +140,7 @@ class App extends Component {
                 Hey, lets talk!
               </p>
               
+              { /* Map over the list of previous messages to show history */}
               {
                 this.state.responses.map((message, index) => {
                   return (
@@ -115,6 +148,7 @@ class App extends Component {
                   );
                 })
               }
+              { /* Put the current userInput into a new chatMessage */}
               {
                 this.state.userInput ?
                   <p className="message user">
@@ -124,11 +158,45 @@ class App extends Component {
                   null
               }
 
+              { /* Loading... put up a chat response that indicates this*/}
+              {
+                this.state.loading ?
+                  <p className="message bot">
+                    
+                    <i className="icon fa fa-2x fa-spinner fa-spin" />
+                    Hang on a sec...
+                  </p> : 
+                  null
+              }
+              <div style={{ float:"left", clear: "both" }}
+                ref={(el) => { this.messagesEnd = el; }}>
+              </div>
+
           </div>
           <div className="chatSubmit">
-              <input type="text" id="chatInput" value={this.state.userInput} onChange={(e) => this.handleUserInput(e)} />
-              <button id="recordButton" onClick={(e) => this.handleRecord(e)}>Record</button>
-              <button type="submit" id="submitButton" onClick={(e) => this.handleSubmit(e)}>Submit</button>
+              
+              <input
+                type="text"
+                id="chatInput"
+                value={this.state.userInput}
+                onKeyPress={(e) => this.handleKeyPress(e)}
+                onChange={(e) => this.handleUserInput(e)}
+              />
+              
+              <button
+                id="recordButton"
+                onClick={(e) => this.handleRecord(e)}>
+                Record
+              </button>
+              
+              <button
+                type="submit"
+                id="submitButton"
+                onChange={(e) => this.handleSubmit(e)}
+                onClick={(e) => this.handleSubmit(e)}>
+                Submit
+              </button>
+
           </div>
           <footer>
 
