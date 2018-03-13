@@ -52,6 +52,7 @@ class App extends Component {
     recognition.onresult = (event) => {
       console.log('event', event);
       const phrase = event.results[0][0].transcript;
+      console.log('phrase', phrase);
       this.setState({ userInput: phrase });
       this.handleSubmit();
       
@@ -88,7 +89,10 @@ class App extends Component {
   handleSubmit (e) {
     // Keep the form from submitting and causing a hard refresh
     console.log('e', e);
-    e.preventDefault()
+    if (e) {
+      e.preventDefault()  
+    }
+    
     // Set loading to true so that we can provide user feedback
     this.setState ({ loading: true });
 
@@ -183,11 +187,11 @@ class App extends Component {
                 onChange={(e) => this.handleUserInput(e)}
               />
               
-              <button
+              {/* <button
                 id="recordButton"
                 onClick={(e) => this.handleRecord(e)}>
                 Record
-              </button>
+              </button> */}
               
               <button
                 type="submit"
