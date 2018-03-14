@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Header from './Header';
+import About from './About';
 
 const synth = window.speechSynthesis;
 const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
@@ -31,11 +32,12 @@ class App extends Component {
       userInput: '',
       responses: [],
       loading: false,
+      selectedPage: 'bot',
     }
   }
 
   scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    this.messagesEnd && this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
   
   componentDidMount() {
@@ -128,11 +130,25 @@ class App extends Component {
     });
   }
 
+  handleRouteChange(page) {
+    console.log('page', page);
+    this.setState({ selectedPage: page });
+  }
+
   render() {
+    if (this.state.selectedPage === 'about') {
+    return (
+        <About
+          handleRouteChange={(page) => this.handleRouteChange(page)}
+        />
+      );
+    }
     return (
       <div className="container">
           
-          <Header />
+          <Header
+            handleRouteChange={(page) => this.handleRouteChange(page)}
+          />
 
           <div className="chatbox">
               <p className="message bot">
@@ -196,11 +212,7 @@ class App extends Component {
                 onClick={(e) => this.handleSubmit(e)}>
                 Submit
               </button>
-
           </div>
-          <footer>
-
-          </footer>
       </div>
     );
   }
