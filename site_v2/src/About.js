@@ -4,7 +4,7 @@ import Header from './Header';
 export default (props) => (
     <div className="aboutContainer">
         
-        <Header />
+        <Header handleRouteChange={(page) => props.handleRouteChange(page)}/>
        
         <div id="aboutText">
             <p> 
