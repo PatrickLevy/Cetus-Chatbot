@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import Header from './Header';
 
 const synth = window.speechSynthesis;
 const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
@@ -130,13 +131,8 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-          <header>
-              <h1>Cetus Chatbot</h1>
-              <nav>
-                  <a href="index.html">Chat</a>
-                  <a href="about.html">About</a>
-              </nav>
-          </header>
+          
+          <Header />
 
           <div className="chatbox">
               <p className="message bot">
