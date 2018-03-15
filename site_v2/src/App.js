@@ -91,7 +91,6 @@ class App extends Component {
 
   handleSubmit (e) {
     // Keep the form from submitting and causing a hard refresh
-    console.log('e', e);
     if (e) {
       e.preventDefault()  
     }

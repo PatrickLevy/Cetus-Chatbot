@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # from Main.Main import Main
 import requests
-from config import api_server
+# from config import api_server
 
 ###########################################################################
 # Cetus Console Application
@@ -19,10 +19,11 @@ while True:
     # Get input string from user
     # TODO Input validation
     input_string = input("Say something: ")
+    api_server = 'http://184.105.3.121:3001/cetus'
 
     # Send input_string to Cetus API via HTTP
     payload = {'userText': input_string}
     req = requests.get(api_server, params = payload)
 
     # Print Response from Cetus
-    print(req.text)
+    print("\n(Cetus)", req.text, "\n")
