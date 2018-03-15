@@ -99,7 +99,7 @@ class App extends Component {
     this.setState ({ loading: true });
 
     // Send the user text to our api to get a response
-    axios.get('http://184.105.3.121:3001/cetus', {
+    axios.get('http://10.64.56.3:3001/cetus', {
       params: {
         userText: this.state.userInput
       }
