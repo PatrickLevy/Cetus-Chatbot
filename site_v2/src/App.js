@@ -198,11 +198,11 @@ class App extends Component {
                 onChange={(e) => this.handleUserInput(e)}
               />
               
-              {/* <button
+              <button
                 id="recordButton"
                 onClick={(e) => this.handleRecord(e)}>
                 Record
-              </button> */}
+              </button>
               
               <button
                 type="submit"
